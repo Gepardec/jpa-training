@@ -1,0 +1,22 @@
+# Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+
+# Maven
+target/
+
+# Misc
+.tern-project
+
+#IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode
+
+# Ansible
+*.retry
+/.idea/
