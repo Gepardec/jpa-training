@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS hogajama;
+CREATE SCHEMA hogajama;
 
 SET search_path TO hogajama;
 
