@@ -1,83 +1,74 @@
-create schema hogajama;
+CREATE SCHEMA hogajama;
 
-SET search_path to hogajama;
+SET search_path TO hogajama;
 
-create sequence seq_owner_id
-    increment by 50;
+CREATE SEQUENCE seq_owner_id
+    INCREMENT BY 50;
 
-alter sequence seq_owner_id owner to hogajama;
+ALTER SEQUENCE seq_owner_id OWNER TO hogajama;
 
-create sequence seq_sensor_id
-    increment by 50;
+CREATE SEQUENCE seq_sensor_id
+    INCREMENT BY 50;
 
-alter sequence seq_sensor_id owner to hogajama;
+ALTER SEQUENCE seq_sensor_id OWNER TO hogajama;
 
-create sequence seq_sensor_type_id
-    increment by 50;
+CREATE SEQUENCE seq_sensor_type_id
+    INCREMENT BY 50;
 
-alter sequence seq_sensor_type_id owner to hogajama;
+ALTER SEQUENCE seq_sensor_type_id OWNER TO hogajama;
 
-create sequence seq_unit_id
-    increment by 50;
+CREATE SEQUENCE seq_unit_id
+    INCREMENT BY 50;
 
-alter sequence seq_unit_id owner to hogajama;
+ALTER SEQUENCE seq_unit_id OWNER TO hogajama;
 
-create table owner
+CREATE TABLE owner
 (
-    id          bigint       not null
-        constraint pk_owner
-            primary key,
-    sso_user_id varchar(255) not null
+    id          bigint       NOT NULL
+        CONSTRAINT pk_owner PRIMARY KEY,
+    sso_user_id varchar(255) NOT NULL
 );
 
-alter table owner
-    owner to hogajama;
+ALTER TABLE owner
+    OWNER TO hogajama;
 
-create table sensor_type
+CREATE TABLE sensor_type
 (
-    id   bigint       not null
-        constraint pk_sensor_type
-            primary key,
-    name varchar(255) not null
+    id   bigint       NOT NULL
+        CONSTRAINT pk_sensor_type PRIMARY KEY,
+    name varchar(255) NOT NULL
 );
 
-alter table sensor_type
-    owner to hogajama;
+ALTER TABLE sensor_type
+    OWNER TO hogajama;
 
-create table unit
+CREATE TABLE unit
 (
-    id          bigint                not null
-        constraint pk_unit
-            primary key,
+    id          bigint                NOT NULL
+        CONSTRAINT pk_unit PRIMARY KEY,
     description varchar(255),
-    is_default  boolean default false not null,
+    is_default  boolean DEFAULT FALSE NOT NULL,
     name        varchar(255),
-    owner_id    bigint                not null
-        constraint fk_unit_owner
-            references owner
+    owner_id    bigint                NOT NULL
+        CONSTRAINT fk_unit_owner REFERENCES owner
 );
 
-alter table unit
-    owner to hogajama;
+ALTER TABLE unit
+    OWNER TO hogajama;
 
 
-create table sensor
+CREATE TABLE sensor
 (
-    id             bigint       not null
-        constraint pk_sensor
-            primary key,
-    device_id      varchar(255) not null
-        constraint pui_sensor_device_id
-            unique,
+    id             bigint       NOT NULL
+        CONSTRAINT pk_sensor PRIMARY KEY,
+    device_id      varchar(255) NOT NULL
+        CONSTRAINT pui_sensor_device_id UNIQUE,
     name           varchar(255),
-    sensor_type_id bigint       not null
-        constraint fk_sensor_sensor_type
-            references sensor_type,
-    unit_id        bigint       not null
-        constraint fk_sensor_unit
-            references unit
+    sensor_type_id bigint       NOT NULL
+        CONSTRAINT fk_sensor_sensor_type REFERENCES sensor_type,
+    unit_id        bigint       NOT NULL
+        CONSTRAINT fk_sensor_unit REFERENCES unit
 );
 
-alter table sensor
-    owner to hogajama;
-
+ALTER TABLE sensor
+    OWNER TO hogajama;
