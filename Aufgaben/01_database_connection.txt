@@ -1,0 +1,3 @@
+## Aufgabe:
+
+* Konfiguriere einen Wildfly Server (Version 19.1.0) so, dass er mit der im Docker Container laufenden Datenbank verbunden ist.
