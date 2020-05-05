@@ -1,0 +1,9 @@
+## Aufgabe:
+
+Konfiguriere einen Wildfly Server (Version 19.1.0) so, dass er eine Verbindung zur bereitgestellten im Docker Container laufenden Datenbank hat.
+
+* host: localhost
+* database: postgres
+* user: hogajama
+* password: training
+
