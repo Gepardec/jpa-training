@@ -24,7 +24,7 @@
     <!-- FLYWAY PROPERTIES -->
     <flyway.user>hogajama</flyway.user>
     <flyway.password>training</flyway.password>
-    <flyway.schemas>management</flyway.schemas>
+    <flyway.schemas>hogajama</flyway.schemas>
     <flyway.url>jdbc:postgresql://localhost:5432/postgres</flyway.url>
 
     <!-- DEPENDENCY VERSION -->
