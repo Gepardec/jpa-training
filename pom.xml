@@ -10,6 +10,7 @@
   <modules>
     <module>flyway</module>
     <module>persistence</module>
+    <module>release-parent</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -55,7 +56,6 @@
         <version>${version.postgresl.driver}</version>
       </dependency>
 
-
       <!-- TESTING -->
       <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -70,6 +70,7 @@
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
