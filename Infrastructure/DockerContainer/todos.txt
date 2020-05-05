@@ -1,0 +1,1 @@
+fetch options in postgres scripts and either create, run or stop the container.
