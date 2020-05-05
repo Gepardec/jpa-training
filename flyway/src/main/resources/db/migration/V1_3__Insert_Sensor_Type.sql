@@ -1,6 +1,5 @@
 SET search_path TO hogajama;
 
-TRUNCATE sensor_type;
 INSERT INTO sensor_type ("id", "name")
 VALUES (1, 'IDENTITY'),
        (2, 'LINEAR100'),
