@@ -10,6 +10,5 @@ Das Skript befindet sich im module infrastructure im Verzeichnis DockerContainer
 Windows:
 führe folgende Befehle aus:
 docker run --name postgres_training -p 5432:5432 -d -e POSTGRES_PASSWORD=training -e POSTGRES_USER=hogajama  postgres:11.7
-
 mvn flyway:migrate im root Verzeichnis des flyway moduls.
 
