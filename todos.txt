@@ -1,7 +1,0 @@
-## DOCKER SCRIPTS
-
-fetch options in postgres scripts and either create, run or stop the container.
-
-## PROJECT SETUP
-
-configure flyway maven plugin to setup database with - yet to be created - DDL statements
