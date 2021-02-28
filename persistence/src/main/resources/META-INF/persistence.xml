@@ -9,10 +9,11 @@
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <properties>
             <!-- Properties for Hibernate -->
-            <property name="hibernate.default_schema" value="hogajama" />
-            <property name="hibernate.show_sql" value="false" />
-            <property name="hibernate.format_sql" value="false" />
-            <property name="hibernate.id.new_generator_mappings" value="true" />
+            <property name="hibernate.default_schema" value="cinema"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
+            <!-- org.hibernate.dialect.PostgreSQL10Dialect coming in Hibernate 5.4 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
         </properties>

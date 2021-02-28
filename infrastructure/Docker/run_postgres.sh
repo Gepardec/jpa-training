@@ -17,7 +17,7 @@ main() {
     local command=$@
 
     if [[ ${command} == "init" ]];then
-        execute "docker run --name postgres_training -p 5432:5432 -d -e POSTGRES_PASSWORD=training -e POSTGRES_USER=hogajama  postgres:11.7"
+        execute "docker run --name postgres_training -p 5432:5432 -d -e POSTGRES_PASSWORD=training -e POSTGRES_USER=cinema  postgres:13.2"
         sleep 2
         execute "mvn -f ${SCRIPT_DIR}/../../flyway/pom.xml flyway:migrate"
         exit 0

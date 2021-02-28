@@ -1,78 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.gepardec</groupId>
-  <artifactId>jpa-training</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <modules>
-    <module>flyway</module>
-    <module>persistence</module>
-    <module>release-parent</module>
-  </modules>
-  <packaging>pom</packaging>
+    <groupId>com.gepardec</groupId>
+    <artifactId>jpa-training</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
-  <name>jpa-training</name>
+    <modules>
+        <module>flyway</module>
+        <module>persistence</module>
+        <module>release-parent</module>
+    </modules>
 
-  <properties>
-    <!-- PROJECT PROPERTIES-->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <packaging>pom</packaging>
 
-    <!-- FLYWAY PROPERTIES -->
-    <flyway.user>hogajama</flyway.user>
-    <flyway.password>training</flyway.password>
-    <flyway.schemas>hogajama</flyway.schemas>
-    <flyway.url>jdbc:postgresql://localhost:5432/postgres</flyway.url>
+    <name>jpa-training</name>
 
-    <!-- DEPENDENCY VERSION -->
-    <version.flyway.maven.plugin>6.4.1</version.flyway.maven.plugin>
-    <version.postgresl.driver>42.2.11</version.postgresl.driver>
-    <version.junit>5.6.0</version.junit>
-    <version.wildfly.bom>19.1.0.Final</version.wildfly.bom>
-    <version.javaee.api>8.0</version.javaee.api>
-  </properties>
+    <properties>
+        <!-- PROJECT PROPERTIES-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
-  <dependencyManagement>
+        <!-- FLYWAY PROPERTIES -->
+        <flyway.user>cinema</flyway.user>
+        <flyway.password>training</flyway.password>
+        <flyway.schemas>cinema</flyway.schemas>
+        <flyway.url>jdbc:postgresql://localhost:5432/postgres</flyway.url>
+
+        <!-- DEPENDENCY VERSION -->
+        <version.flyway.maven.plugin>7.5.3</version.flyway.maven.plugin>
+        <version.postgresl.driver>42.2.18</version.postgresl.driver>
+        <version.junit>5.7.1</version.junit>
+        <version.wildfly.bom>22.0.1.Final</version.wildfly.bom>
+        <version.javaee.api>8.0</version.javaee.api>
+        <version.maven.failsafe.plugin>2.22.0</version.maven.failsafe.plugin>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8</artifactId>
+                <version>${version.wildfly.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${version.javaee.api}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${version.postgresl.driver}</version>
+            </dependency>
+
+            <!-- TESTING -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-      <dependency>
-        <groupId>org.wildfly.bom</groupId>
-        <artifactId>wildfly-jakartaee8</artifactId>
-        <version>${version.wildfly.bom}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-api</artifactId>
-        <version>${version.javaee.api}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>${version.postgresl.driver}</version>
-      </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- TESTING -->
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+    <profiles>
+        <profile>
+            <id>failsafe</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.maven.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
